@@ -4,14 +4,24 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+// Init all stores defined in
+// ./lib/websites/*.config.js
+var initStores = require('./lib/initStores');
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
 
+// Make sure we have all stores as config objects
+var stores = initStores();
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
+
+// Set global app data for stores enabled
+app.set('stores', stores);
 
 app.use(logger('dev'));
 app.use(express.json());
