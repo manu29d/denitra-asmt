@@ -15,6 +15,8 @@ var searchRouter = require('./routes/search');
 var app = express();
 
 // Make sure we have all stores as config objects
+// This also means that to add a new store
+// We will have to restart the app
 var stores = initStores();
 
 // view engine setup
