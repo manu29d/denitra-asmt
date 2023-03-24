@@ -4,10 +4,10 @@ var router = express.Router();
 var searchInStores = require('../lib/searchInStores');
 
 /* GET search listing. */
-router.get('/', function(req, res, next) {
+router.get('/', async function(req, res) {
   const keyword = req.query.q;
   const stores = req.app.get('stores');
-  const results = { results: searchInStores(stores, keyword) };
+  const results = { results: await searchInStores(stores, keyword) };
   res.json(results);
 });
 
